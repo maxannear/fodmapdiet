@@ -77,3 +77,21 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
 @media (max-width: 767px) {
 
 }
+
+/* ==========================================================================
+   Custom specific stuff
+   ========================================================================== */
+   
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+color: #fff;
+text-decoration: none;
+background-color: #C3C3C3;
+background-image: -moz-linear-gradient(top,#CDCDCD,#B3B3B3);
+background-image: -webkit-gradient(linear,0 0,0 100%,from(#CDCDCD),to(#B3B3B3));
+background-image: -webkit-linear-gradient(top,#CDCDCD,#B3B3B3);
+background-image: -o-linear-gradient(top,#CDCDCD,#B3B3B3);
+background-image: linear-gradient(to bottom,#CDCDCD,#B3B3B3);
+background-repeat: repeat-x;
+outline: 0;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffcdcdcd',endColorstr='#ffb3b3b3',GradientType=0);
+}

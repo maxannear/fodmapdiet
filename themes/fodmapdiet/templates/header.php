@@ -1,4 +1,5 @@
-<header class="banner" role="banner">
+
+<header  class="banner" role="banner"> <?php /*
   <div class="container">
     <a class="brand" href="<?php echo home_url(); ?>/"><?php bloginfo('name'); ?></a>
     <nav class="nav-main" role="navigation">
@@ -8,5 +9,5 @@
         endif;
       ?>
     </nav>
-  </div>
-</header>
+  </div>*/ ?>
+</header> 
