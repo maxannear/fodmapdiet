@@ -53,8 +53,13 @@ function my_admin() {
 function display_food_item_meta_box( $food_item ) {
     // Retrieve current attributes and populate the boxes with that
     $edible =  get_post_meta( $food_item->ID, 'edible', true );
-	$fodmap_source =  get_post_meta( $food_item->ID, 'fodmap_source', true );
+	//$fodmap_source =  get_post_meta( $food_item->ID, 'fodmap_source', true );
 	$food_group =  get_post_meta( $food_item->ID, 'food_group', true );
+	$fructans = get_post_meta( $food_item->ID, 'fructans', true );
+	$galactans = get_post_meta( $food_item->ID, 'galactans', true );
+	$polyols = get_post_meta( $food_item->ID, 'polyols', true );
+	$fructose = get_post_meta( $food_item->ID, 'fructose', true );
+	$lactose = get_post_meta( $food_item->ID, 'lactose', true );
     ?>
     <table>
         <tr>
@@ -68,20 +73,20 @@ function display_food_item_meta_box( $food_item ) {
             </td>
         </tr>
 		
-		
+		<?php /*
         <tr>
             <td style="width: 250px">FODMAP Source</td>
             <td>
-                <select style="width: 150px" name="food_item_fodmap_source">
+                <select multiple="multiple" style="width: 150px" name="food_item_fodmap_source[]">
 					<option value="none" <?php echo selected( "none", $fodmap_source ); ?> >None</option>
 					<option value="fructans" <?php echo selected( "fructans", $fodmap_source ); ?> >Fructans</option>
 					<option value="galactans" <?php echo selected( "galactans", $fodmap_source ); ?>>Galactans</option>
 					<option value="polyols" <?php echo selected( "polyols", $fodmap_source ); ?>>Polyols</option>
 					<option value="fructose" <?php echo selected( "fructose", $fodmap_source ); ?>>Fructose</option>
-					<option value="polyols" <?php echo selected( "polyols", $fodmap_source ); ?>>Lactose</option>
+					<option value="lactose" <?php echo selected( "lactose", $fodmap_source ); ?>>Lactose</option>
                 </select>
             </td>
-        </tr>
+        </tr> */?>
 		
 		<tr>
             <td style="width: 250px">Food Group</td>
@@ -100,6 +105,19 @@ function display_food_item_meta_box( $food_item ) {
                 </select>
             </td>
         </tr>
+		
+		<tr>
+            <td style="width: 250px">FODMAP Sources</td>
+            <td>
+                <input type="checkbox" name="food_item_fructans_checkbox" value="fructans"> Fructans <br>
+				<input type="checkbox" name="food_item_polyols_checkbox" value="polyols"> Polyols <br>
+				<input type="checkbox" name="food_item_fructose_checkbox" value="fructose"> Fructose <br>
+				<input type="checkbox" name="food_item_galactans_checkbox" value="galactans"> Galactans <br>
+				<input type="checkbox" name="food_item_lactose_checkbox" value="lactose"> Lactose <br>				
+            </td>
+        </tr>
+		
+		
     </table>
     <?php
 }
@@ -112,13 +130,49 @@ function add_food_item_fields( $food_item_id, $food_item ) {
             update_post_meta( $food_item_id, 'edible', $_POST['food_item_edible'] );
         }
         
-		if ( isset( $_POST['food_item_fodmap_source'] ) && $_POST['food_item_fodmap_source'] != '' ) {
+		/*if ( isset( $_POST['food_item_fodmap_source'] ) && $_POST['food_item_fodmap_source'] != '' ) {
             update_post_meta( $food_item_id, 'fodmap_source', $_POST['food_item_fodmap_source'] );
-        }
+        }*/
 		
 		if ( isset( $_POST['food_item_food_group'] ) && $_POST['food_item_food_group'] != '' ) {
             update_post_meta( $food_item_id, 'food_group', $_POST['food_item_food_group'] );
         }
+		
+		if ( isset( $_POST['food_item_fructans_checkbox'] ) && $_POST['food_item_fructans_checkbox'] != '' ) {
+            update_post_meta( $food_item_id, 'fructans', 'yes' );
+        }
+		else{
+			 update_post_meta( $food_item_id, 'fructans', 'no' );
+		}
+		
+		if ( isset( $_POST['food_item_polyols_checkbox'] ) && $_POST['food_item_polyols_checkbox'] != '' ) {
+            update_post_meta( $food_item_id, 'polyols', 'yes' );
+        }
+		else{
+			 update_post_meta( $food_item_id, 'polyols', 'no' );
+		}
+		
+		if ( isset( $_POST['food_item_fructose_checkbox'] ) && $_POST['food_item_fructose_checkbox'] != '' ) {
+            update_post_meta( $food_item_id, 'fructose', 'yes' );
+        }
+		else{
+			 update_post_meta( $food_item_id, 'fructose', 'no' );
+		}		
+		
+		if ( isset( $_POST['food_item_galactans_checkbox'] ) && $_POST['food_item_galactans_checkbox'] != '' ) {
+            update_post_meta( $food_item_id, 'galactans', 'yes' );
+        }
+		else{
+			 update_post_meta( $food_item_id, 'galactans', 'no' );
+		}
+		
+		if ( isset( $_POST['food_item_lactose_checkbox'] ) && $_POST['food_item_lactose_checkbox'] != '' ) {
+            update_post_meta( $food_item_id, 'lactose', 'yes' );
+        }
+		else{
+			 update_post_meta( $food_item_id, 'lactose', 'no' );
+		}
+		
     }
 }
 
